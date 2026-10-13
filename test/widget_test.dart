@@ -1,30 +1,16 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:mylist/main.dart';
+import 'package:mylist/models.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
-
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  test('item json round-trips and labels are per-section', () {
+    final it = Item(id: '1', title: 'Dune', cat: Cat.books, status: Status.ongoing, progress: 3, rating: 4, fav: true, added: 1);
+    final back = Item.fromJson(it.toJson());
+    expect(back.title, 'Dune');
+    expect(back.cat, Cat.books);
+    expect(back.status, Status.ongoing);
+    expect(back.progress, 3);
+    expect(back.fav, true);
+    expect(Cat.books.statusLabel(Status.done), 'Read');
+    expect(Cat.sites.statusLabel(Status.dropped), 'Dead');
   });
 }
