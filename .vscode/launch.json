@@ -2,20 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "MyList (debug)",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main.dart"
-    },
-    {
-      "name": "MyList (profile)",
+      "name": "MyList (development)",
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
-      "flutterMode": "profile"
+      "flutterMode": "debug"
     },
     {
-      "name": "MyList (release)",
+      "name": "MyList (production)",
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
